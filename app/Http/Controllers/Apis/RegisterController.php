@@ -185,4 +185,9 @@ class RegisterController extends Controller
             ]
         ]);
     }
+
+    public function formation(Request $request)
+    {
+        return Register::formationRecap()->get();
+    }
 }

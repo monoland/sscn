@@ -35,6 +35,14 @@ class Register extends Model
             ->get();
     }
 
+    public function scopeFormationRecap($query)
+    {
+        return $query
+            ->selectRaw('formation_type, verification_status, count(verification_status) as summary')
+            ->groupBy('formation_type', 'verification_status')
+            ->orderBy('formation_type');
+    }
+
     public function scopeFilterOn($query, $request)
     {
         $sortaz = $request->descending === 'true' ? 'desc' : 'asc';

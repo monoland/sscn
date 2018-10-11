@@ -763,6 +763,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -774,6 +793,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             recaps: null,
             timeline: null,
             summary: null,
+            headformation: [{ text: 'Jenis Formasi', align: 'left', sortable: true, value: 'formation_type' }, { text: 'Status', align: 'left', sortable: true, value: 'verification_status' }, { text: 'Jumlah', align: 'left', sortable: true, value: 'summary' }],
+            formations: [],
             icons: ['assignment_ind', 'school', 'accessible', 'people']
         };
     },
@@ -782,6 +803,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.getRecap();
         this.registerTimeline();
         this.registerSummary();
+        this.formationSummary();
     },
 
 
@@ -880,6 +902,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return registerSummary;
+        }(),
+
+        formationSummary: function () {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var _ref8, data;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.next = 2;
+                                return this.$http.post('/api/register/formation');
+
+                            case 2:
+                                _ref8 = _context4.sent;
+                                data = _ref8.data;
+
+                                this.formations = data;
+
+                            case 5:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function formationSummary() {
+                return _ref7.apply(this, arguments);
+            }
+
+            return formationSummary;
         }()
     }
 });
@@ -1776,6 +1830,72 @@ var render = function() {
                               expression: "summary"
                             }
                           })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { md12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "v-card__chart",
+                              attrs: {
+                                color: "light-green lighten-5",
+                                flat: ""
+                              }
+                            },
+                            [
+                              _c("v-card-text", [
+                                _vm._v("DATA REKAP PER FORMASI")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers: _vm.headformation,
+                                      items: _vm.formations,
+                                      "hide-actions": ""
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "items",
+                                        fn: function(props) {
+                                          return [
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  props.item.formation_type
+                                                )
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  props.item.verification_status
+                                                )
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(props.item.summary))
+                                            ])
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
