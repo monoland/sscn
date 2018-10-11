@@ -29,7 +29,8 @@ class Recap extends Model
         $mixquery = $query;
 
         if ($filter) {
-            $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            $mixquery = $mixquery->whereRaw('lower(location) like ?', ["%{$filter}%"]);
+            // where('name', 'like', "%{$filter}%");
         }
 
         if ($sortby) {

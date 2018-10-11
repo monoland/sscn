@@ -13,10 +13,18 @@
                 </div>
                 <div class="page__actions">
                     <div class="page__actions--wrapper">
-                        <v-btn color="red" tag="div" id="button_target" dark>import</v-btn>
+                        <v-btn color="cyan" tag="div" id="button_target" dark>import</v-btn>
+
+                        <v-btn @click="findForm" color="cyan" flat icon>
+                            <v-icon>search</v-icon>
+                        </v-btn>
                     </div>
                 </div>
             </v-flex>
+
+            <m-search v-model="search" @close="closeFinder" v-show="findState" ref="elmInput"
+                placeholder="Pencarian Lokasi"
+            ></m-search>
 
             <v-flex class="page__data" md12>
                 <v-data-table

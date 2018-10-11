@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import { AxiosHttp } from './http';
+
 import * as Pages from './pages';
 import * as Utils from './utils';
 import * as Components from './components';

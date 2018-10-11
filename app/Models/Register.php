@@ -44,7 +44,9 @@ class Register extends Model
         $mixquery = $query;
 
         if ($filter) {
-            $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            // $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            $mixquery = $mixquery->whereRaw('lower(name) like ?', ["%{$filter}%"])
+                            ->orWhereRaw('register_numb = ?', ["{$filter}"]);
         }
 
         if ($sortby) {

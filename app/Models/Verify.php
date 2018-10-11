@@ -20,7 +20,12 @@ class Verify extends Model
         $mixquery = $query;
 
         if ($filter) {
-            $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            // $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            $mixquery = $mixquery
+                            ->whereRaw('lower(name) like ?', ["%{$filter}%"])
+                            ->orWhereRaw('register_numb = ?', ["{$filter}"])
+                            ->orWhereRaw('lower(position_name) like ?', ["%{$filter}%"])
+                            ->orWhereRaw('lower(location_name) like ?', ["%{$filter}%"]);
         }
 
         if ($sortby) {
