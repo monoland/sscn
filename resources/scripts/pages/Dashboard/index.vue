@@ -61,6 +61,25 @@
                                 </v-card-text>
                             </v-card>
                         </v-flex>
+
+                        <v-flex md12>
+                            <v-card color="light-green lighten-5" class="v-card__chart" flat>
+                                <v-card-text>DATA REKAP PER POSISI</v-card-text>
+                                <v-card-text>
+                                    <v-data-table 
+                                        :headers="headposition"
+                                        :items="positions"
+                                        hide-actions
+                                    >
+                                        <template slot="items" slot-scope="props">
+                                            <td>{{ props.item.position }}</td>
+                                            <td>{{ props.item.formation }}</td>
+                                            <td>{{ props.item.registrar }}</td>
+                                        </template>
+                                    </v-data-table>
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
                     </v-layout>
                 </v-container>
             </v-flex>
@@ -85,6 +104,12 @@ export default {
 
         ],
         formations: [],
+        headposition: [
+            { text: 'Posisi', align: 'left', sortable: true, value: 'position' },
+            { text: 'Formasi', align: 'left', sortable: true, value: 'formation' },
+            { text: 'Pendaftar', align: 'left', sortable: true, value: 'registrar' }
+        ],
+        positions: [],
         icons: [ 'assignment_ind', 'school', 'accessible', 'people']
     }),
 
@@ -93,12 +118,18 @@ export default {
         this.registerTimeline();
         this.registerSummary();
         this.formationSummary();
+        this.positionSummary();
     },
 
     methods: {
         getRecap: async function() {
             let { data } = await this.$http.post('/api/recaps/summary');
             this.recaps = data;
+        },
+
+        positionSummary: async function() {
+            let { data } = await this.$http.post('/api/recaps/position');
+            this.positions = data;
         },
 
         registerTimeline: async function() {
@@ -114,7 +145,7 @@ export default {
         formationSummary: async function() {
             let { data } = await this.$http.post('/api/register/formation');
             this.formations = data;
-        }
+        },
     }
 };
 </script>

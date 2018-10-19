@@ -8,6 +8,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::resource('fail', 'Apis\FailController');
     Route::post('recaps/{filename}/import', 'Apis\RecapsController@import');
     Route::post('recaps/summary', 'Apis\RecapsController@summary');
+    Route::post('recaps/position', 'Apis\RecapsController@position');
     Route::resource('recaps', 'Apis\RecapsController');
     Route::post('register/{filename}/import', 'Apis\RegisterController@import');
     Route::post('register/timeline', 'Apis\RegisterController@timeline');

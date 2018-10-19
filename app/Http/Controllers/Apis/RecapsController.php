@@ -110,4 +110,9 @@ class RecapsController extends Controller
     {
         return new RecapSummaryResource(Recap::byType());
     }
+
+    public function position(Request $request)
+    {
+        return Recap::byPosition()->get();
+    }
 }

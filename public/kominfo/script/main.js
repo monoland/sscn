@@ -782,6 +782,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -795,6 +814,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             summary: null,
             headformation: [{ text: 'Jenis Formasi', align: 'left', sortable: true, value: 'formation_type' }, { text: 'Status', align: 'left', sortable: true, value: 'verification_status' }, { text: 'Jumlah', align: 'left', sortable: true, value: 'summary' }],
             formations: [],
+            headposition: [{ text: 'Posisi', align: 'left', sortable: true, value: 'position' }, { text: 'Formasi', align: 'left', sortable: true, value: 'formation' }, { text: 'Pendaftar', align: 'left', sortable: true, value: 'registrar' }],
+            positions: [],
             icons: ['assignment_ind', 'school', 'accessible', 'people']
         };
     },
@@ -804,6 +825,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.registerTimeline();
         this.registerSummary();
         this.formationSummary();
+        this.positionSummary();
     },
 
 
@@ -840,7 +862,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return getRecap;
         }(),
 
-        registerTimeline: function () {
+        positionSummary: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var _ref4, data;
 
@@ -849,13 +871,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 _context2.next = 2;
-                                return this.$http.post('/api/register/timeline');
+                                return this.$http.post('/api/recaps/position');
 
                             case 2:
                                 _ref4 = _context2.sent;
                                 data = _ref4.data;
 
-                                this.timeline = data;
+                                this.positions = data;
 
                             case 5:
                             case 'end':
@@ -865,14 +887,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function registerTimeline() {
+            function positionSummary() {
                 return _ref3.apply(this, arguments);
             }
 
-            return registerTimeline;
+            return positionSummary;
         }(),
 
-        registerSummary: function () {
+        registerTimeline: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var _ref6, data;
 
@@ -881,13 +903,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 _context3.next = 2;
-                                return this.$http.post('/api/register/summary');
+                                return this.$http.post('/api/register/timeline');
 
                             case 2:
                                 _ref6 = _context3.sent;
                                 data = _ref6.data;
 
-                                this.summary = data;
+                                this.timeline = data;
 
                             case 5:
                             case 'end':
@@ -897,14 +919,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee3, this);
             }));
 
-            function registerSummary() {
+            function registerTimeline() {
                 return _ref5.apply(this, arguments);
             }
 
-            return registerSummary;
+            return registerTimeline;
         }(),
 
-        formationSummary: function () {
+        registerSummary: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
                 var _ref8, data;
 
@@ -913,13 +935,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context4.prev = _context4.next) {
                             case 0:
                                 _context4.next = 2;
-                                return this.$http.post('/api/register/formation');
+                                return this.$http.post('/api/register/summary');
 
                             case 2:
                                 _ref8 = _context4.sent;
                                 data = _ref8.data;
 
-                                this.formations = data;
+                                this.summary = data;
 
                             case 5:
                             case 'end':
@@ -929,8 +951,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee4, this);
             }));
 
-            function formationSummary() {
+            function registerSummary() {
                 return _ref7.apply(this, arguments);
+            }
+
+            return registerSummary;
+        }(),
+
+        formationSummary: function () {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                var _ref10, data;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                _context5.next = 2;
+                                return this.$http.post('/api/register/formation');
+
+                            case 2:
+                                _ref10 = _context5.sent;
+                                data = _ref10.data;
+
+                                this.formations = data;
+
+                            case 5:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+
+            function formationSummary() {
+                return _ref9.apply(this, arguments);
             }
 
             return formationSummary;
@@ -1884,6 +1938,70 @@ var render = function() {
                                             _vm._v(" "),
                                             _c("td", [
                                               _vm._v(_vm._s(props.item.summary))
+                                            ])
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { md12: "" } },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "v-card__chart",
+                              attrs: {
+                                color: "light-green lighten-5",
+                                flat: ""
+                              }
+                            },
+                            [
+                              _c("v-card-text", [
+                                _vm._v("DATA REKAP PER POSISI")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers: _vm.headposition,
+                                      items: _vm.positions,
+                                      "hide-actions": ""
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "items",
+                                        fn: function(props) {
+                                          return [
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(props.item.position)
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(props.item.formation)
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(props.item.registrar)
+                                              )
                                             ])
                                           ]
                                         }

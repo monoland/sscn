@@ -20,6 +20,14 @@ class Recap extends Model
             ->get();
     }
 
+    public function scopeByPosition($query)
+    {
+        return $query
+            ->selectRaw('position, sum(formation) as formation, sum(registrar) as registrar')
+            ->groupBy('position')
+            ->orderBy('position');
+    }
+
     public function scopeFilterOn($query, $request)
     {
         $sortaz = $request->descending === 'true' ? 'desc' : 'asc';
@@ -29,7 +37,8 @@ class Recap extends Model
         $mixquery = $query;
 
         if ($filter) {
-            $mixquery = $mixquery->whereRaw('lower(location) like ?', ["%{$filter}%"]);
+            $mixquery = $mixquery->whereRaw('lower(name) like ?', ["%{$filter}%"])
+            ->orWhereRaw('lower(location) like ?', ["%{$filter}%"]);
             // where('name', 'like', "%{$filter}%");
         }
 
