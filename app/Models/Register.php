@@ -38,7 +38,7 @@ class Register extends Model
     public function scopeFormationRecap($query)
     {
         return $query
-            ->selectRaw('formation_type, verification_status, count(verification_status) as summary')
+            ->selectRaw("formation_type, verification_status, count(*) as summary, count(*) FILTER (WHERE gender = 'PEREMPUAN') as p, count(*) FILTER (WHERE gender='LAKI-LAKI') as l")
             ->groupBy('formation_type', 'verification_status')
             ->orderBy('formation_type');
     }

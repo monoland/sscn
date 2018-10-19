@@ -56,6 +56,8 @@
                                             <td>{{ props.item.formation_type }}</td>
                                             <td>{{ props.item.verification_status }}</td>
                                             <td>{{ props.item.summary }}</td>
+                                            <td>{{ props.item.p }}</td>
+                                            <td>{{ props.item.l }}</td>
                                         </template>
                                     </v-data-table>
                                 </v-card-text>
@@ -100,7 +102,9 @@ export default {
         headformation: [
             { text: 'Jenis Formasi', align: 'left', sortable: true, value: 'formation_type' },
             { text: 'Status', align: 'left', sortable: true, value: 'verification_status' },
-            { text: 'Jumlah', align: 'left', sortable: true, value: 'summary' }
+            { text: 'Jumlah', align: 'left', sortable: true, value: 'summary' },
+            { text: 'Perempuan', align: 'left', sortable: true, value: 'p' },
+            { text: 'Laki-laki', align: 'left', sortable: true, value: 'l' },
 
         ],
         formations: [],
