@@ -190,4 +190,9 @@ class RegisterController extends Controller
     {
         return Register::formationRecap()->get();
     }
+
+    public function resultcheck(Request $request)
+    {
+        return Register::resultCheck($request);
+    }
 }

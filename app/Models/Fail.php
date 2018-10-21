@@ -40,8 +40,8 @@ class Fail extends Model
 
         try {
             $model = new static;
-            $model->id = $request->no_register;
-            $model->nik = $request->nik;
+            $model->register_id = $request->no_register;
+            // $model->nik = $request->nik;
             // $model->name = $request->nama;
             // $model->diploma_name = $request->nama_ijazah;
             $model->reason = $request->alasan_tidak_lulus;

@@ -4,6 +4,7 @@ Route::get('/', 'WebController@index');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/validate', 'Apis\RegisterController@resultcheck');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {

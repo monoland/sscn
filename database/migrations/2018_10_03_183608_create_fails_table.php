@@ -14,8 +14,9 @@ class CreateFailsTable extends Migration
     public function up()
     {
         Schema::create('fails', function (Blueprint $table) {
-            $table->bigInteger('id')->primary();
-            $table->bigInteger('nik')->unique();
+            $table->bigIncrements('id');
+            $table->bigInteger('register_id')->unsigned()->unique();
+            // $table->bigInteger('nik')->unique();
             // $table->text('name');
             // $table->text('diploma_name');
             $table->text('reason')->nullable();

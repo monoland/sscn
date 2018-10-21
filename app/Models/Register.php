@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\RegisterResource;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PassResultResource;
+use App\Http\Resources\FailResultResource;
 
 class Register extends Model
 {
     // relations
+    public function fail()
+    {
+        return $this->hasOne(\App\Models\Fail::class);
+    }
 
     // filters
     public function scopeOnDate($query, $date)
@@ -62,6 +68,22 @@ class Register extends Model
         }
 
         return $mixquery;
+    }
+
+    public static function resultCheck($request)
+    {
+        try {
+            $search = $request->searchtext;
+            $model = (new static)->where('id', $search)->orWhere('nik', $search)->first();
+
+            if ($model->verification_status === 'Lulus Verifikasi') {
+                return new PassResultResource($model);
+            } else {
+                return new FailResultResource($model);
+            }
+        } catch (\Exception $e) {
+            abort(500, $e->getMessage());
+        }
     }
 
     // import

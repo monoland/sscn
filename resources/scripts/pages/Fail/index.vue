@@ -37,8 +37,8 @@
                     <template slot="items" slot-scope="props">
                         <tr>
                             <!-- <td>{{ props.item.name }}</td> -->
-                            <td>{{ props.item.id }}</td>
-                            <td>{{ props.item.nik }}</td>
+                            <td>{{ props.item.register_id }}</td>
+                            <!-- <td>{{ props.item.nik }}</td> -->
                             <td>{{ props.item.reason }}</td>
                             <!-- <td>{{ props.item.verification_name }}</td> -->
                             <!-- <td>{{ props.item.verification_date }}</td> -->
@@ -72,8 +72,7 @@ export default {
         this.headers = [
             // { class: 'column__describe', text: 'Nama', value: 'name' },
             // { class: 'column__describe', text: 'Nama Ijazah', value: 'diploma_name' },
-            { class: 'column__describe', text: 'No Register', value: 'id' },
-            { class: 'column__describe', text: 'NIK', value: 'nik' },
+            { class: 'column__describe', text: 'No Register', value: 'register_id' },
             { class: 'column__describe', text: 'Alasan Tidak Lulus', value: 'reason' },
             // { class: 'column__describe', text: 'Nama Verifikator', value: 'verification_name' },
             // { class: 'column__describe', text: 'Tanggal Verifikator', value: 'verification_date' },

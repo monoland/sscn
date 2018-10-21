@@ -10,7 +10,12 @@
                             TAHUN 2018
                         </div>
                         <div class="find__hero" :class="{ 'find__hero--focus': focus }">
-                            <input type="text" name="find" placeholder="Nomor Register / NIK" @focus="focus = true" @blur="focus = false">
+                            <input type="text" name="find" placeholder="Nomor Register / NIK" 
+                                @focus="focus = true" 
+                                @blur="focus = false"
+                                @keyup.enter = "searching"
+                                v-model="searchtext"
+                            >
                         </div>
                         <div class="caption mt-2">
                             TEKAN ENTER UNTUK MELIHAT HASIL
@@ -94,6 +99,33 @@
                 </v-layout>
             </v-flex>
         </v-layout>
+
+        <v-dialog v-model="dialog.pass" max-width="500px" persistent>
+            <v-card>
+                <v-card-text class="announcement">
+                    <div class="announcement--head">SELAMAT</div>
+                    <div class="announcement--text mt-2">Pendaftar atas nama: `<strong>{{ person.nama }}</strong>` dengan No Register: `<strong>{{ person.id }}</strong>` dan NIK: `<strong>{{ person.nik }}</strong>` dinyatakan: `<strong class="green--text">Memenuhi Syarat</strong>` untuk mengikuti seleksi CPNS Kabupaten Tangerang tahun 2018 dalam jabatan: `<strong>{{ person.posisi }}</strong>` pada lokasi: `<strong>{{ person.lokasi }}</strong>` dengan nomor peserta: `<strong>{{ person.nomor }}</strong>`</div>
+                    <v-divider class="my-3"></v-divider>
+                    <div class="announcement--link">
+                        <v-btn color="purple" dark>unduh dokumen pengumuman</v-btn>
+                        <v-btn color="cyan" dark @click.native="closeDialog">tutup</v-btn>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialog.fail" max-width="500px" persistent>
+            <v-card>
+                <v-card-text class="announcement">
+                    <div class="announcement--head">MOHON MAAF</div>
+                    <div class="announcement--text mt-2 mb-3">Pendaftar atas nama: `<strong>{{ person.nama }}</strong>` dengan No Register: `<strong>{{ person.id }}</strong>` dan NIK: `<strong>{{ person.nik }}</strong>` dinyatakan: `<strong class="red--text">Tidak Memenuhi Syarat</strong>` untuk mengikuti seleksi CPNS Kabupaten Tangerang tahun 2018 dalam jabatan: `<strong>{{ person.posisi }}</strong>` pada lokasi: `<strong>{{ person.lokasi }}</strong>`.</div>
+                    <v-textarea box v-model="person.alasan" auto-grow label="Keterangan" hide-details></v-textarea>
+                    <div class="announcement--link mt-3">
+                        <v-btn color="cyan" dark @click.native="closeDialog">tutup</v-btn>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -105,13 +137,49 @@ export default {
     name: 'page-home',
 
     data: () => ({
-        focus: false
+        focus: false,
+        dialog: {
+            pass: false,
+            fail: false
+        },
+        searchtext: null,
+        person: {
+            id: null,
+            nik: null,
+            nama: null,
+            posisi: null,
+            lokasi: null,
+            nomor: null,
+            alasan: null
+        }
     }),
     
     mounted() {
         Particles.init({
             selector: '#particles'
         });
+    },
+
+    methods: {
+        searching: async function() {
+            let { data } = await this.$http.post('/validate', {
+                searchtext: this.searchtext
+            });
+
+            if (data.status === 'Lulus Verifikasi') {
+                this.person = data;
+                this.dialog.pass = true;
+            } else {
+                this.person = data;
+                this.dialog.fail = true;
+            }
+        },
+
+        closeDialog: function() {
+            this.searchtext = null;
+            this.dialog.fail = false;
+            this.dialog.pass = false;
+        }
     }
 };
 </script>
