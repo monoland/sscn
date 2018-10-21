@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('apps')
-<v-navigation-drawer class="grey lighten-4" width="240" fixed clipped app>
+    <v-navigation-drawer class="grey lighten-4" width="240" fixed clipped app>
         <v-list>
             <v-list-tile class="{{ $page === 'dashboard' ? 'v-list__tile--active' : ''}}" href="/dashboard">
                 <v-list-tile-action><v-icon>home</v-icon></v-list-tile-action>
@@ -98,7 +98,7 @@
             </v-card>
         </v-menu>
     </v-toolbar>
-    
+
     <v-content>
         @yield('page')
     </v-content>

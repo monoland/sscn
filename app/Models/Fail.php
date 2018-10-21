@@ -40,12 +40,13 @@ class Fail extends Model
 
         try {
             $model = new static;
+            $model->id = $request->no_register;
             $model->nik = $request->nik;
-            $model->name = $request->nama;
-            $model->diploma_name = $request->nama_ijazah;
+            // $model->name = $request->nama;
+            // $model->diploma_name = $request->nama_ijazah;
             $model->reason = $request->alasan_tidak_lulus;
-            $model->verification_name = $request->nama_verifikator;
-            $model->verification_date = $request->tanggal_verifikasi;
+            // $model->verification_name = $request->nama_verifikator;
+            // $model->verification_date = $request->tanggal_verifikasi;
             $model->save();
 
             DB::commit();

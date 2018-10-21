@@ -14,13 +14,13 @@ class CreateFailsTable extends Migration
     public function up()
     {
         Schema::create('fails', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('nik');
-            $table->text('name');
-            $table->text('diploma_name');
+            $table->bigInteger('id')->primary();
+            $table->bigInteger('nik')->unique();
+            // $table->text('name');
+            // $table->text('diploma_name');
             $table->text('reason')->nullable();
-            $table->text('verification_name');
-            $table->date('verification_date');
+            // $table->text('verification_name');
+            // $table->date('verification_date');
             $table->timestamps();
         });
     }

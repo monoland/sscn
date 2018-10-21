@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{ props.item.nik }}</td>
                             <td>{{ props.item.name }}</td>
-                            <td>{{ props.item.register_numb }}</td>
+                            <td>{{ props.item.id }}</td>
                             <td>{{ props.item.register_date }}</td>
                             <td>{{ props.item.born_place }}</td>
                             <td>{{ props.item.born_date }}</td>

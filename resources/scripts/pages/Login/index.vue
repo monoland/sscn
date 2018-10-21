@@ -2,7 +2,7 @@
     <v-content>
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
-                <form method="POST" action="/">
+                <form method="POST" action="/login">
                     <input type="hidden" name="_token" ref="token">
 
                     <v-card width="450" class="v-card__authent">
