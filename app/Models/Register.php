@@ -10,6 +10,8 @@ use App\Http\Resources\FailResultResource;
 
 class Register extends Model
 {
+    public $incrementing = false;
+
     // relations
     public function fail()
     {

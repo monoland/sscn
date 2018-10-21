@@ -28,6 +28,15 @@ class Recap extends Model
             ->orderBy('position');
     }
 
+    public function scopeByFilter($query, $request)
+    {
+        return $query
+            ->select('position', 'location', 'formation', 'registrar', 'pass', 'fail')
+            ->where('type', $request->type)
+            ->orderBy('position')
+            ->get();
+    }
+
     public function scopeFilterOn($query, $request)
     {
         $sortaz = $request->descending === 'true' ? 'desc' : 'asc';
@@ -56,14 +65,14 @@ class Recap extends Model
 
         try {
             $model = new static;
-            $model->code = $request->kode_instansi;
-            $model->name = $request->instansi;
             $model->type = $request->jenis_formasi;
             $model->position = $request->jabatan;
-            $model->location = $request->lokasi;
+            $model->location = $request->lokasi_formasi;
             $model->education = $request->pendidikan;
             $model->formation = $request->jumlah_formasi;
             $model->registrar = $request->jumlah_pendaftar;
+            $model->pass = $request->ms;
+            $model->fail = $request->tms;
             $model->save();
 
             DB::commit();

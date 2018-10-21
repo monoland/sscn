@@ -36,15 +36,14 @@
                 >
                     <template slot="items" slot-scope="props">
                         <tr>
-                            <td>{{ props.item.code }}</td>
-                            <td>{{ props.item.name }}</td>
                             <td>{{ props.item.type }}</td>
                             <td>{{ props.item.position }}</td>
                             <td>{{ props.item.location }}</td>
                             <td>{{ props.item.education }}</td>
                             <td>{{ props.item.formation }}</td>
                             <td>{{ props.item.registrar }}</td>
-                            <td class="text-xs-right">{{ props.item.updated_at }}</td>
+                            <td>{{ props.item.pass }}</td>
+                            <td>{{ props.item.fail }}</td>
                         </tr>
                     </template>
                 </v-data-table>
@@ -72,15 +71,14 @@ export default {
 
     created() {
         this.headers = [
-            { class: 'column__describe', text: 'Kode Instansi', value: 'code' },
-            { class: 'column__describe', text: 'Instansi', value: 'name' },
             { class: 'column__describe', text: 'Jenis Formasi', value: 'type' },
             { class: 'column__describe', text: 'Jabatan', value: 'position' },
             { class: 'column__describe', text: 'Lokasi', value: 'location' },
             { class: 'column__describe', text: 'Pendidikan', value: 'education' },
             { class: 'column__describe', text: 'Formasi', value: 'formation' },
             { class: 'column__describe', text: 'Pendaftar', value: 'registrar' },
-            { class: 'column__date', text: 'Update', value: 'updated_at', align: 'right' }
+            { class: 'column__describe', text: 'Lulus', value: 'pass' },
+            { class: 'column__describe', text: 'Tidak Lulus', value: 'fail' }
         ];
 
         this.dataurl = '/api/recaps';

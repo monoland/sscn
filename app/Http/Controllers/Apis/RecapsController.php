@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Resources\RecapCollection;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RecapSummaryResource;
+use App\Http\Resources\RecapFilterCollection;
 
 class RecapsController extends Controller
 {
@@ -96,7 +97,7 @@ class RecapsController extends Controller
         )->toObject();
 
         foreach ($records as $record) {
-            if ($record->kode_instansi) {
+            if ($record->jenis_formasi) {
                 Recap::importRecord($record);
             }
         }
@@ -114,5 +115,10 @@ class RecapsController extends Controller
     public function position(Request $request)
     {
         return Recap::byPosition()->get();
+    }
+
+    public function recapfilter(Request $request)
+    {
+        return new RecapFilterCollection(Recap::byFilter($request));
     }
 }

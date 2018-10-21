@@ -195,4 +195,11 @@ class RegisterController extends Controller
     {
         return Register::resultCheck($request);
     }
+
+    public function download(Request $request, $registrar)
+    {
+        $record = Register::find($registrar);
+
+        return view('print', compact('record'));
+    }
 }

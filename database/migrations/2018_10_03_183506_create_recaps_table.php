@@ -15,14 +15,14 @@ class CreateRecapsTable extends Migration
     {
         Schema::create('recaps', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('code');
-            $table->text('name');
             $table->text('type')->index();
             $table->text('position')->nullable()->index();
             $table->text('location')->nullable()->index();
             $table->text('education')->nullable()->index();
             $table->integer('formation')->unsigned()->default(0);
             $table->integer('registrar')->unsigned()->default(0);
+            $table->integer('pass')->unsigned()->default(0);
+            $table->integer('fail')->unsigned()->default(0);
             $table->timestamps();
         });
     }
