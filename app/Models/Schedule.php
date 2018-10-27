@@ -20,7 +20,8 @@ class Schedule extends Model
         $mixquery = $query;
 
         if ($filter) {
-            $mixquery = $mixquery->where('name', 'like', "%{$filter}%");
+            $mixquery = $mixquery
+                ->whereRaw('lower(name) like ?', ["%{$filter}%"]);
         }
 
         if ($sortby) {

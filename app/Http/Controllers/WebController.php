@@ -21,7 +21,7 @@ class WebController extends Controller
     public function exam(Request $request)
     {
         return new ScheduleCollection(
-            Schedule::filterOn($request)->get()
+            Schedule::filterOn($request)->paginate($request->rowsPerPage)
         );
     }
 }
