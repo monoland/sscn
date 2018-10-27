@@ -3,11 +3,20 @@
         <v-layout column>
             <v-flex md12 style="max-height: 180px;">
                 <v-layout class="page__hero--small" row>
-                    <v-flex class="page__hero--search" md12>
+                    <v-flex class="page__hero--search" md7>
                         <div class="text__hero">
                             JADWAL UJIAN CALON PEGAWAI NEGERI SIPIL<br/>
                             PEMERINTAH KABUPATEN TANGERANG<br/>
                             TAHUN 2018
+                        </div>
+                    </v-flex>
+                    <v-flex class="page__hero--search" md5>
+                        <div class="find__hero mt-0" :class="{ 'find__hero--focus': focus }">
+                            <input type="text" name="find" placeholder="Cari Data Peserta" 
+                                @focus="focus = true" 
+                                @blur="focus = false"
+                                v-model="search"
+                            >
                         </div>
                     </v-flex>
                     <canvas id="particles"></canvas>
@@ -21,6 +30,7 @@
                             :headers="records_head"
                             :items="records_data"
                             :loading="loading"
+                            :search="search"
                             :rows-per-page-items="[25, 50]"
                         >
                             <template slot="items" slot-scope="props">
@@ -31,6 +41,10 @@
                                 <td>{{ props.item.exam_time }}</td>
                                 <td>{{ props.item.sesi }}</td>
                             </template>
+
+                            <v-alert slot="no-results" :value="true" color="error" icon="warning">
+                                Your search for "{{ search }}" found no results.
+                            </v-alert>
                         </v-data-table>
                     </v-card-text>
                 </v-card>
@@ -48,7 +62,7 @@ export default {
 
     data: () => ({
         focus: false,
-        searchtext: null,
+        search: null,
         loading: true,
         records_head: [
             { class: 'column__describe', text: 'No. Peserta', value: 'participant_numb' },
@@ -70,8 +84,6 @@ export default {
     },
 
     methods: {
-        searching: function() {
-        },
         fetchExam: async function() {
             let { data } = await this.$http.get('/ujian');
 
