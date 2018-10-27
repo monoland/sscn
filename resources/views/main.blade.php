@@ -34,10 +34,10 @@
                 </v-list-tile-content>
             </v-list-tile>
 
-            <v-list-tile class="{{ $page === 'verify' ? 'v-list__tile--active' : ''}}" href="/verify">
+            <v-list-tile class="{{ $page === 'schedule' ? 'v-list__tile--active' : ''}}" href="/schedule">
                 <v-list-tile-action><v-icon>assignment_turned_in</v-icon></v-list-tile-action>
                 <v-list-tile-content>
-                    <v-list-tile-title>Lolos Verifikasi</v-list-tile-title>
+                    <v-list-tile-title>Jadwal Ujian</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
         </v-list>

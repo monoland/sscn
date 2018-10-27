@@ -12,6 +12,6 @@
 </v-toolbar>
 
 <v-content>
-    <page-home></page-home>
+    <page-exam></page-exam>
 </v-content>
 @endsection

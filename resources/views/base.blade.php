@@ -23,7 +23,7 @@
     </div>
     
     <noscript>
-        <strong>We're sorry but master doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry, it's doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <script src="/kominfo/script/manifest.js"></script>
     <script src="/kominfo/script/vendor.js"></script>

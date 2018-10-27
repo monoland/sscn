@@ -235,8 +235,6 @@ export default {
         },
 
         download: function() {
-            console.log('start');
-
             this.$http({
                 url: '/download',
                 method: 'GET',

@@ -16,10 +16,14 @@
         > .v-menu
             &--inline:last-of-type
                 margin-left: 16px
-    
-    &__title:not(:first-child)
-        margin-left: 12px
-        width: 168px
+    &__title
+        a
+            color: inherit
+            text-decoration: none
+
+        &:not(:first-child)
+            margin-left: 12px
+            width: 168px
 
     .v-input
         &__slot
