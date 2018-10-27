@@ -1,7 +1,7 @@
 <template>
     <v-container fluid fill-height>
         <v-layout column>
-            <v-flex md12>
+            <v-flex md12 style="max-height: 180px;">
                 <v-layout class="page__hero--small" row>
                     <v-flex class="page__hero--search" md12>
                         <div class="text__hero">
@@ -20,6 +20,7 @@
                         <v-data-table 
                             :headers="records_head"
                             :items="records_data"
+                            :loading="loading"
                             :rows-per-page-items="[25, 50]"
                         >
                             <template slot="items" slot-scope="props">
@@ -48,6 +49,7 @@ export default {
     data: () => ({
         focus: false,
         searchtext: null,
+        loading: true,
         records_head: [
             { class: 'column__describe', text: 'No. Peserta', value: 'participant_numb' },
             { class: 'column__describe', text: 'No. Register', value: 'register_id' },
@@ -74,6 +76,7 @@ export default {
             let { data } = await this.$http.get('/ujian');
 
             this.records_data = data;
+            this.loading = false;
         },
     },
 
