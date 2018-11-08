@@ -13,7 +13,12 @@ class Score extends Model
 
         try {
             $total = $request->twk + $request->tiu + $request->tkp;
-            $status = 0;
+
+            if ($request->twk >= 75 && $request->tiu >= 80 && $request->tkp >= 143) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
 
             $model = new static;
             $model->participant_numb = $request->no_peserta;
