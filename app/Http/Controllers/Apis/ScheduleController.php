@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ScheduleCollection;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Score;
 
 class ScheduleController extends Controller
 {
@@ -97,6 +98,25 @@ class ScheduleController extends Controller
         foreach ($records as $record) {
             if ($record->no_register) {
                 Schedule::importRecord($record);
+            }
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function scorer(Request $request)
+    {
+        Score::query()->truncate();
+
+        $records = Excel::selectSheets('Sheet1')->load(
+            'storage' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'passing-grade.xlsx'
+        )->toObject();
+
+        foreach ($records as $record) {
+            if ($record->no_peserta) {
+                Score::importRecord($record);
             }
         }
 

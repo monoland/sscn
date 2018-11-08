@@ -14,6 +14,7 @@
                 <div class="page__actions">
                     <div class="page__actions--wrapper">
                         <v-btn color="cyan" tag="div" id="button_target" dark>import</v-btn>
+                        <v-btn color="cyan" dark @click="updateScore">scorer</v-btn>
 
                         <v-btn @click="findForm" color="cyan" flat icon>
                             <v-icon>search</v-icon>
@@ -89,6 +90,16 @@ export default {
                 }
             } catch (error) {
                 
+            }
+        },
+
+        updateScore: async function() {
+            try {
+                let {data} = await this.$http.post(this.dataurl + '/scorer');
+
+                console.log(data);
+            } catch (error) {
+                // 
             }
         }
     }

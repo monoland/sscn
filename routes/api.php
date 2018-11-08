@@ -17,6 +17,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::resource('register', 'Apis\RegisterController');
     Route::post('verify/{filename}/import', 'Apis\VerifyController@import');
     Route::resource('verify', 'Apis\VerifyController');
+    Route::post('schedule/scorer', 'Apis\ScheduleController@scorer');
     Route::post('schedule/{filename}/import', 'Apis\ScheduleController@import');
     Route::resource('schedule', 'Apis\ScheduleController');
 });
